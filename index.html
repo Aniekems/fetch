@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            background-color: azure;
+        }
+     ul {
+        font-size: 1.7rem;
+     }
+    </style>
+  </head>
+  <body>
+    <ul>
+      
+    </ul>
+    <script>
+      const div = document.querySelector('ul');
+async function getAdvice() {
+  for (let i = 0; i < 20; i++) {
+    // Adding a timestamp or random number makes the URL unique
+    let data = await fetch(`https://api.adviceslip.com/advice?cb=${Date.now() + i}`);
+    let response = await data.json();
+    
+    const ele = document.createElement('li');
+    ele.textContent = response.slip.advice;
+    div.append(ele);
+
+  }
+}
+getAdvice();
+    </script>
+  </body>
+</html>
